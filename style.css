@@ -1,0 +1,66 @@
+/* Palette Colori */
+:root {
+    --navy: #001F3F;
+    --gold: #DAA520;
+    --burgundy: #800020;
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--navy);
+}
+
+h1, h2, h3, .navbar-brand {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--white);
+    border-bottom: 2px solid var(--gold);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--navy) !important;
+    font-weight: 600;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100 vh;
+    background: linear-gradient(rgba(0,31,63,0.7), rgba(0,31,63,0.7)), url('hero-bg.jpg'); /* Qui metterai la tua foto */
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+}
+
+.hero-section h1 {
+    color: var(--gold);
+}
+
+/* Sezione Servizi */
+.bg-navy {
+    background-color: var(--navy);
+}
+
+.gold-text {
+    color: var(--gold);
+}
+
+.border-gold {
+    border: 1px solid var(--gold);
+}
+
+.btn-custom {
+    background-color: var(--gold);
+    color: var(--white);
+    padding: 10px 30px;
+    border-radius: 0;
+    transition: 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: var(--burgundy);
+    color: var(--white);
+}
