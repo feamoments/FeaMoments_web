@@ -1,66 +1,650 @@
-/* Palette Colori */
+/* ─── 1. CONFIGURAZIONE E VARIABILI ─── */
 :root {
-    --navy: #001F3F;
-    --gold: #DAA520;
-    --burgundy: #800020;
-    --white: #FFFFFF;
+  --navy:   #001F3F;
+  --gold:   #DAA520;
+  --white:  #FFFFFF;
+  --wine:   #800020;
+  --light:  #F8F5F0;
+  --font-menu:  'Bodoni Moda', Georgia, serif;
+  --font-title: 'Cormorant Garamond', Georgia, serif;
+  --font-body:  'Lora', Georgia, serif;
+  --transition: 0.35s ease;
 }
 
+/* ─── 2. RESET E BASI ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--navy);
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--navy);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ─── NAVBAR ─── */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(6px);
+  padding: 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  height: 100%; /* Si adatta all'altezza della navbar */
+}
+.nav-logo img {
+  height: 50px;    /* Regola questo valore per rimpicciolire o ingrandire il logo */
+  width: auto;     /* Mantiene le proporzioni originali */
+  display: block;
+}
+/*.nav-logo span { color: var(--navy); }*/
+.nav-links { display: flex; gap: 2.4rem; align-items: center; }
+.nav-links a {
+  font-family: var(--font-menu);
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--navy);
+  position: relative;
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* Dropdown */
+.dropdown { position: relative; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  border: 1px solid rgba(218,165,32,0.3);
+  min-width: 180px;
+  padding: 0.6rem 0;
+}
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a { padding: 0.5rem 1rem; display: block; font-size: 0.75rem; }
+
+.btn-preventivo {
+  background: var(--gold);
+  color: var(--navy) !important;
+  padding: 0.5rem 1.4rem;
+  font-size: 0.78rem;
 }
 
-h1, h2, h3, .navbar-brand {
-    font-family: 'Playfair Display', serif;
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 2rem 4rem;
+  color: var(--navy);
+}
+.hero-brand { font-family: var(--font-title); font-size: clamp(5rem, 8vw, 6rem);margin-bottom: 0; }
+.hero-sub { color: var(--gold); font-family: var(--font-title); font-size: 2rem; font-style: italic; margin-top: -30px;}
+.hero-divider { width: 60px; height: 1px; background: var(--gold); margin: 2rem 0; margin-top: 0px}
+.hero-tagline {color: var(--navy); font-family: var(--font-title); font-size: 1.5rem; font-style: italic;margin-top: -30px; margin-bottom: 1rem;}
+
+.btn-primary { border: 1px solid var(--gold); color: var(--gold); padding: 1rem 2rem; text-transform: uppercase; }
+.btn-primary:hover { background: var(--gold); color: var(--navy); }
+
+/* ─── SEZIONI ─── */
+section { padding: 4rem 2rem; }
+.centered { text-align: center; }
+.section-label { color: var(--gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+.section-title { font-family: var(--font-title); font-size: 2.5rem; margin-top: 0.5rem; }
+.section-divider { width: 50px; height: 1px; background: var(--gold); margin: 1.5rem auto; }
+
+/* ─── CARDS SERVIZI ─── */
+#servizi {
+  background-color: var(--navy); /* Sfondo blu scuro */
+  color: var(--white);           /* Testo generale chiaro */
 }
 
-/* Navbar */
-.navbar {
-    background-color: var(--white);
-    border-bottom: 2px solid var(--gold);
+/* Assicuriamoci che il titolo della sezione sia visibile sul blu */
+#servizi .section-title {
+  color: var(--white);
 }
 
-.navbar-brand, .nav-link {
-    color: var(--navy) !important;
-    font-weight: 600;
+/* ─── CARDS SERVIZI (VERSIONE DEFINITIVA CON TESTI SCURI) ─── */
+.servizi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto;
 }
 
-/* Hero Section */
-.hero-section {
-    height: 100 vh;
-    background: linear-gradient(rgba(0,31,63,0.7), rgba(0,31,63,0.7)), url('hero-bg.jpg'); /* Qui metterai la tua foto */
-    background-size: cover;
-    background-position: center;
-    color: var(--white);
+.servizio-card { 
+  background-color: var(--white); /* Sfondo card bianco */
+  padding: 2.5rem 1.5rem; 
+  text-align: center; 
+  transition: 0.3s ease; 
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none !important; /* Rimuove bordi residui */
 }
 
-.hero-section h1 {
+.servizio-card:hover { 
+  transform: translateY(-10px); 
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3); 
+}
+
+/* Forza il colore Navy per i titoli delle card */
+.servizio-card h3 {
+  color: var(--navy) !important;
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+/* Forza un grigio scuro per le descrizioni delle card */
+.servizio-card p {
+  color: #333333 !important; 
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* CONTENITORE IMMAGINE GRANDE */
+.card-img-wrap { 
+  width: 100%;
+  height: 220px; /* Aumentato per dare ancora più spazio ai loghi */
+  margin-bottom: 1rem;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  background: transparent !important;
+}
+
+.card-img-wrap img {
+  max-width: 95%;    
+  max-height: 200px; 
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* BOTTONE */
+.btn-card {
+  color: var(--gold) !important;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Effetto zoom sul logo quando passi il mouse sulla card */
+.servizio-card:hover .card-img-wrap img {
+  transform: scale(1.1);
+}
+
+/* ─── GALLERIA SLIDER ─── */
+/* Colore dei titoli nella sezione Galleria */
+#galleria .section-title {
+    color: var(--white) !important;
+}
+
+
+#galleria .section-divider {
+    background: var(--gold); /* Assicuriamoci che anche la linea sia visibile */
+}
+#galleria .section-subtitle {
     color: var(--gold);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    font-style: italic; 
+    opacity: 0.9;       
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#galleria { 
+    background-color: var(--navy); 
+    padding: 1rem 1rem; 
 }
 
-/* Sezione Servizi */
-.bg-navy {
-    background-color: var(--navy);
+.gallery-container {
+  position: relative;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
 
-.gold-text {
-    color: var(--gold);
+.gallery-wrapper {
+  display: flex;
+  overflow-x: hidden; /* Nasconde la barra di scorrimento */
+  scroll-behavior: smooth;
+  gap: 15px;
+  padding: 20px 0;
+  /* Supporto per scorrimento magnetico */
+  scroll-snap-type: x mandatory; 
 }
 
-.border-gold {
-    border: 1px solid var(--gold);
+.gallery-item {
+  flex: 0 0 calc(25% - 12px); /* 4 foto su desktop */
+  aspect-ratio: 4/5;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid var(--gold);
+  scroll-snap-align: start;
 }
 
-.btn-custom {
-    background-color: var(--gold);
-    color: var(--white);
-    padding: 10px 30px;
-    border-radius: 0;
-    transition: 0.3s;
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
 }
 
-.btn-custom:hover {
-    background-color: var(--burgundy);
-    color: var(--white);
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Frecce di navigazione Carousel */
+.nav-btn {
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+/* ─── NUOVO LIGHTBOX MODERNO ─── */
+.lightbox {
+  display: none; 
+  position: fixed;
+  z-index: 2000;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.95); 
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px); 
+}
+
+.lightbox-viewer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80%;
+  position: relative;
+}
+
+.lightbox-content-wrapper {
+  position: relative;
+  max-width: 60%; 
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.lightbox-content {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 30px rgba(218, 165, 32, 0.3);
+}
+
+.lightbox-arrow {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 3.5rem; 
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  z-index: 20;
+  padding: 20px;
+}
+
+.lightbox-arrow:hover { opacity: 1; transform: scale(1.1); }
+.lightbox-arrow.prev { position: absolute; left: 2%; }
+.lightbox-arrow.next { position: absolute; right: 2%; }
+
+.close-lightbox {
+  position: absolute;
+  top: 30px; right: 40px;
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
+  opacity: 0.6;
+  z-index: 30;
+}
+
+/* ── EFFECTO FOTO PRECEDENTE/SUCCESSIVA ── */
+.lightbox-content-wrapper::before,
+.lightbox-content-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30%; 
+  height: 70%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) grayscale(100%); 
+  opacity: 0.2; 
+  z-index: -1; 
+  transition: 0.5s;
+}
+
+/* Queste righe leggono le immagini dal JS */
+.lightbox-content-wrapper::before {
+  left: -40%; 
+  background-image: var(--prev-img); 
+}
+
+.lightbox-content-wrapper::after {
+  right: -40%; 
+  background-image: var(--next-img); 
+}
+
+/* Adattamento Mobile */
+@media (max-width: 768px) {
+  .gallery-item { flex: 0 0 calc(80% - 10px); } /* Foto più grandi su mobile */
+  .lightbox-content-wrapper { max-width: 90%; }
+  .lightbox-arrow { font-size: 2.5rem; }
+  .lightbox-content-wrapper::before,
+  .lightbox-content-wrapper::after { display: none; }
+}
+
+/* ─── FORM PREVENTIVO ─── */
+#preventivo { 
+  background: var(--light); 
+  padding: 5rem 2rem; 
+}
+
+.preventivo-inner { 
+  max-width: 900px; /* Un po' più largo per somigliare allo screenshot */
+  margin: 0 auto; 
+}
+
+/* Titolo e sottotitolo */
+#preventivo .section-title {
+  color: var(--gold);
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Griglia del form */
+.form-row { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 1.5rem; 
+  margin-bottom: 1.5rem; 
+}
+
+/* Mobile: una colonna sola */
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+.form-group { 
+  display: flex; 
+  flex-direction: column; 
+  margin-bottom: 1.5rem; 
+}
+
+/* Etichette (Labels) */
+.form-group label {
+  font-size: 0.85rem;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Input e Textarea */
+.form-group input, 
+.form-group textarea { 
+  padding: 0.8rem; 
+  border: 1px solid var(--navy); /* Bordi sottili color navy */
+  background: white;
+  font-family: var(--font-body);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: var(--gold); /* Cambia colore quando clicchi */
+}
+
+/* Checkbox Style */
+.checkbox-group {
+  display: flex;
+  flex-direction: column; /* Come nello screenshot, uno sotto l'altro */
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--navy);
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Bottone Invio */
+.btn-submit { 
+  width: 100%;
+  background: var(--gold); /* Colore oro come nello screenshot */
+  color: var(--navy); 
+  padding: 1.2rem; 
+  border: none; 
+  cursor: pointer; 
+  text-transform: uppercase; 
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: 0.3s;
+}
+
+.btn-submit:hover {
+  filter: brightness(1.1);
+}
+
+
+/* ─── CONTATTI ─── */
+#contatti { 
+  background: white; 
+  padding: 0rem 0rem;
+}
+
+#contatti .section-title {
+    color: var(--gold) !important; /* Forza il colore Navy */
+    text-align: left;              /* Mantiene l'allineamento a sinistra come nello screenshot */
+    font-size: 3.5rem;             /* Opzionale: per renderlo grande come in foto */
+    margin-bottom: 2rem;
+}
+
+.contatti-layout { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  max-width: 1100px; 
+  margin: 0 auto; 
+  gap: 4rem; 
+  align-items: center;
+}
+
+.contact-info-item { 
+  margin-bottom: 1.5rem; 
+  display: flex; 
+  align-items: center; 
+  gap: 1.2rem; 
+}
+
+.contact-info-item a {
+  font-size: 1.4rem;
+  color: #8a0000; /* Rosso scuro come nello screenshot */
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.contact-icon {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+.contact-big-logo {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+/* ─── FOOTER ─── */
+.main-footer {
+  background: white;
+}
+
+/* Fascia Blu con Nuvole */
+.footer-clouds {
+  background-color: var(--navy);
+  background-size: cover;
+  background-position: center;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.clouds-text p {
+  color: var(--gold);
+  font-family: 'Playfair Display', serif; /* O un font corsivo elegante */
+  font-size: 2.2rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Logo Centrale */
+.footer-logo-row {
+  padding: 3rem 0;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.footer-logo-img {
+  max-width: 400px;
+}
+
+/* Barra Bottom Copyright */
+.footer-bottom {
+  padding: 1.5rem 2rem;
+}
+
+.footer-bottom-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mini-logo {
+  height: 50px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-socials img {
+  width: 25px;
+  transition: 0.3s;
+}
+
+.footer-socials img:hover {
+  transform: scale(1.2);
+}
+
+.footer-copy p {
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .contatti-layout { grid-template-columns: 1fr; text-align: center; }
+  .contact-info-item { justify-content: center; }
+  .footer-bottom-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .clouds-text p { font-size: 1.5rem; }
+}
+
+/* ─── MOBILE ─── */
+.nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+.nav-toggle span { width: 25px; height: 2px; background: navy; }
+
+@media (max-width: 768px) {
+  #navbar { padding: 0 1.5rem; }
+  .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 2rem; border-bottom: 1px solid var(--gold); }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: flex; }
+  .form-row { grid-template-columns: 1fr; }
+  .contatti-layout { grid-template-columns: 1fr; }
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
