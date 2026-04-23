@@ -6,604 +6,29 @@
   <title>FeaMoments | PhotoBooth & VideoBooth per Eventi</title>
   <meta name="description" content="FeaMoments - Photobooth e Videobooth per eventi indimenticabili. FeaMirror, FeaPhone, Fea360 e molto altro." />
 
-  <!-- Google Fonts: Bodoni Moda (per menu), Cormorant Garamond (per titoli, simile Adobe Caslon), Lora (per testi) -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ─── CSS Variables ─── */
-    :root {
-      --navy:   #001F3F;
-      --gold:   #DAA520;
-      --white:  #FFFFFF;
-      --wine:   #800020;
-      --light:  #F8F5F0;
-      --font-menu:  'Bodoni Moda', Georgia, serif;
-      --font-title: 'Cormorant Garamond', Georgia, serif;
-      --font-body:  'Lora', Georgia, serif;
-      --transition: 0.35s ease;
-    }
-
-    /* ─── Reset & Base ─── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--white);
-      color: var(--navy);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-
-    /* ─── NAVBAR ─── */
-    #navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      background: rgba(0, 31, 63, 0.97);
-      backdrop-filter: blur(6px);
-      padding: 0 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 70px;
-      border-bottom: 1px solid rgba(218, 165, 32, 0.3);
-      transition: background var(--transition);
-    }
-    .nav-logo {
-      font-family: var(--font-menu);
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-    }
-    .nav-logo span { color: var(--white); }
-    .nav-links {
-      display: flex;
-      gap: 2.4rem;
-      align-items: center;
-    }
-    .nav-links a {
-      font-family: var(--font-menu);
-      font-size: 0.82rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--white);
-      position: relative;
-      padding-bottom: 3px;
-      transition: color var(--transition);
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 0; height: 1px;
-      background: var(--gold);
-      transition: width var(--transition);
-    }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-links a:hover::after { width: 100%; }
-
-    /* Dropdown */
-    .dropdown { position: relative; }
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% + 10px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--navy);
-      border: 1px solid rgba(218,165,32,0.3);
-      min-width: 180px;
-      padding: 0.6rem 0;
-    }
-    .dropdown-menu a {
-      display: block;
-      padding: 0.55rem 1.4rem;
-      font-size: 0.78rem;
-      border-left: 2px solid transparent;
-    }
-    .dropdown-menu a:hover {
-      border-left-color: var(--gold);
-      color: var(--gold);
-    }
-    .dropdown:hover .dropdown-menu { display: block; }
-
-    .btn-preventivo {
-      font-family: var(--font-menu);
-      font-size: 0.78rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      background: var(--gold);
-      color: var(--navy) !important;
-      padding: 0.5rem 1.4rem;
-      border: none;
-      cursor: pointer;
-      transition: background var(--transition), color var(--transition);
-    }
-    .btn-preventivo:hover { background: var(--wine); color: var(--white) !important; }
-    .btn-preventivo::after { display: none !important; }
-
-    /* Hamburger mobile */
-    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .nav-toggle span { width: 26px; height: 2px; background: var(--white); transition: var(--transition); }
-
-    /* ─── HERO ─── */
-    #hero {
-      min-height: 100vh;
-      background: var(--navy);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(218,165,32,0.08) 0%, transparent 70%);
-    }
-    .hero-logo-wrap {
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.3s forwards;
-    }
-    .hero-logo-wrap img {
-      width: 180px;
-      margin: 0 auto;
-      /* Placeholder: sostituisci con il tuo logo */
-    }
-    .hero-logo-placeholder {
-      width: 160px;
-      height: 160px;
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      font-family: var(--font-menu);
-      font-size: 1.1rem;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-    }
-    .hero-brand {
-      font-family: var(--font-title);
-      font-size: clamp(3.5rem, 9vw, 7rem);
-      font-weight: 600;
-      color: var(--white);
-      letter-spacing: 0.06em;
-      line-height: 1;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.5s forwards;
-    }
-    .hero-sub {
-      font-family: var(--font-title);
-      font-size: clamp(1.1rem, 3vw, 1.7rem);
-      font-style: italic;
-      color: var(--gold);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-top: 0.6rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.7s forwards;
-    }
-    .hero-divider {
-      width: 60px; height: 1px;
-      background: var(--gold);
-      margin: 2rem auto;
-      opacity: 0;
-      animation: fadeIn 1s ease 0.9s forwards;
-    }
-    .hero-tagline {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: rgba(255,255,255,0.75);
-      letter-spacing: 0.08em;
-      max-width: 480px;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.1s forwards;
-    }
-    .hero-cta {
-      margin-top: 3rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.3s forwards;
-    }
-    .btn-primary {
-      font-family: var(--font-menu);
-      font-size: 0.82rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      background: transparent;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-      padding: 0.9rem 2.4rem;
-      cursor: pointer;
-      transition: background var(--transition), color var(--transition);
-      display: inline-block;
-    }
-    .btn-primary:hover { background: var(--gold); color: var(--navy); }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    /* ─── SECTION COMMONS ─── */
-    section { padding: 6rem 2rem; }
-    .section-label {
-      font-family: var(--font-menu);
-      font-size: 0.72rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
-    }
-    .section-title {
-      font-family: var(--font-title);
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      line-height: 1.15;
-    }
-    .section-divider {
-      width: 50px; height: 1px;
-      background: var(--gold);
-      margin: 1.4rem 0 2rem;
-    }
-    .centered { text-align: center; }
-    .centered .section-divider { margin: 1.4rem auto 2rem; }
-
-    /* ─── SERVIZI ─── */
-    #servizi {
-      background: var(--white);
-    }
-    .servizi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2.5rem;
-      max-width: 1200px;
-      margin: 3.5rem auto 0;
-    }
-    .servizio-card {
-      border: 1px solid rgba(0,31,63,0.1);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      position: relative;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-      background: var(--white);
-    }
-    .servizio-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 0; height: 2px;
-      background: var(--gold);
-      transition: width var(--transition);
-    }
-    .servizio-card:hover::before { width: 100%; }
-    .servizio-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(0,31,63,0.1);
-      border-color: rgba(218,165,32,0.3);
-    }
-    .card-img-wrap {
-      width: 110px; height: 110px;
-      margin: 0 auto 1.6rem;
-      border-radius: 50%;
-      background: var(--light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border: 2px solid var(--gold);
-    }
-    .card-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-    .card-img-placeholder {
-      font-family: var(--font-menu);
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: var(--gold);
-      text-align: center;
-    }
-    .servizio-card h3 {
-      font-family: var(--font-title);
-      font-size: 1.45rem;
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
-    }
-    .servizio-card p {
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: rgba(0,31,63,0.75);
-      line-height: 1.75;
-      margin-bottom: 1.6rem;
-    }
-    .btn-card {
-      font-family: var(--font-menu);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--wine);
-      border-bottom: 1px solid var(--wine);
-      padding-bottom: 2px;
-      transition: color var(--transition), border-color var(--transition);
-    }
-    .btn-card:hover { color: var(--gold); border-color: var(--gold); }
-
-    /* ─── GALLERIA ─── */
-    #galleria {
-      background: var(--navy);
-      color: var(--white);
-    }
-    #galleria .section-title { color: var(--white); }
-    .gallery-subtitle {
-      font-family: var(--font-body);
-      font-style: italic;
-      color: rgba(255,255,255,0.65);
-      margin-top: 0.5rem;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      max-width: 1200px;
-      margin: 3rem auto 0;
-    }
-    .gallery-item {
-      aspect-ratio: 1;
-      overflow: hidden;
-      position: relative;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(218,165,32,0.2);
-    }
-    .gallery-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .gallery-item:hover img { transform: scale(1.06); }
-    .gallery-item-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-menu);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      color: rgba(218,165,32,0.5);
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .gallery-item-placeholder .num {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: rgba(218,165,32,0.3);
-    }
-
-    /* ─── PREVENTIVO ─── */
-    #preventivo {
-      background: var(--light);
-    }
-    .preventivo-inner {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1.4rem;
-    }
-    .form-group label {
-      font-family: var(--font-menu);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--navy);
-      margin-bottom: 0.45rem;
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      font-family: var(--font-body);
-      font-size: 0.92rem;
-      background: var(--white);
-      border: 1px solid rgba(0,31,63,0.2);
-      padding: 0.75rem 1rem;
-      color: var(--navy);
-      outline: none;
-      transition: border-color var(--transition);
-    }
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus { border-color: var(--gold); }
-    .form-group textarea { min-height: 110px; resize: vertical; }
-    .checkbox-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
-    .checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--font-body);
-      font-size: 0.88rem;
-      color: var(--navy);
-      cursor: pointer;
-    }
-    .checkbox-label input[type=checkbox] { accent-color: var(--gold); }
-    .btn-submit {
-      font-family: var(--font-menu);
-      font-size: 0.82rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: var(--navy);
-      color: var(--white);
-      border: none;
-      padding: 1rem 2.8rem;
-      cursor: pointer;
-      transition: background var(--transition);
-      margin-top: 0.5rem;
-    }
-    .btn-submit:hover { background: var(--wine); }
-    .form-note {
-      font-size: 0.78rem;
-      color: rgba(0,31,63,0.5);
-      margin-top: 0.3rem;
-    }
-
-    /* ─── CONTATTI ─── */
-    #contatti {
-      background: var(--navy);
-      color: var(--white);
-    }
-    #contatti .section-title { color: var(--white); }
-    .contatti-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      max-width: 900px;
-      margin: 3rem auto 0;
-      align-items: start;
-    }
-    .contact-info-item {
-      display: flex;
-      align-items: center;
-      gap: 1.1rem;
-      margin-bottom: 2rem;
-    }
-    .contact-icon {
-      width: 42px; height: 42px;
-      border: 1px solid var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.1rem;
-    }
-    .contact-info-text {
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
-    }
-    .contact-info-text a { color: rgba(255,255,255,0.75); transition: color var(--transition); }
-    .contact-info-text a:hover { color: var(--gold); }
-    .contact-info-label {
-      font-family: var(--font-menu);
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.25rem;
-    }
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .social-link {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(218,165,32,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.7);
-      font-size: 0.85rem;
-      transition: border-color var(--transition), color var(--transition), background var(--transition);
-      font-family: var(--font-menu);
-    }
-    .social-link:hover { border-color: var(--gold); color: var(--gold); background: rgba(218,165,32,0.08); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: #000e1f;
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-      padding: 2.5rem 2rem;
-      border-top: 1px solid rgba(218,165,32,0.15);
-    }
-    .footer-tagline {
-      font-family: var(--font-title);
-      font-style: italic;
-      font-size: 1.2rem;
-      color: rgba(218,165,32,0.7);
-      margin-bottom: 1rem;
-    }
-    .footer-logo {
-      font-family: var(--font-menu);
-      font-size: 1.1rem;
-      color: var(--white);
-      letter-spacing: 0.15em;
-      margin-bottom: 1rem;
-    }
-    .footer-nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.2rem;
-    }
-    .footer-nav a {
-      font-family: var(--font-menu);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      transition: color var(--transition);
-    }
-    .footer-nav a:hover { color: var(--gold); }
-    footer p { font-size: 0.78rem; }
-
-    /* ─── MOBILE ─── */
-    @media (max-width: 768px) {
-      #navbar { padding: 0 1.4rem; }
-      .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--navy); padding: 1.5rem 2rem; gap: 1.2rem; border-bottom: 1px solid rgba(218,165,32,0.2); }
-      .nav-links.open { display: flex; }
-      .nav-toggle { display: flex; }
-      .form-row { grid-template-columns: 1fr; }
-      .contatti-layout { grid-template-columns: 1fr; gap: 2rem; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-  </style>
+  
+  <!-- Collegamento al file CSS esterno -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- ─── NAVBAR ─── -->
+<!-- NAVBAR -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">Fea<span>Moments</span></a>
-
+  <a href="#" class="nav-logo">
+    <img src="images/logoFeaMoments.png" alt="FeaMoments Logo">
+  </a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
-
   <ul class="nav-links" id="navLinks">
     <li><a href="#hero">Home</a></li>
     <li class="dropdown">
       <a href="#servizi">Servizi ▾</a>
       <ul class="dropdown-menu">
         <li><a href="feamirror.html">FeaMirror</a></li>
-        <li><a href="feamirror-selfie.html">FeaMirror Selfie</a></li>
+        <li><a href="feamirrorselfie.html">FeaMirror Selfie</a></li>
         <li><a href="feaphone.html">FeaPhone</a></li>
         <li><a href="fea360.html">Fea360</a></li>
       </ul>
@@ -615,337 +40,222 @@
   </ul>
 </nav>
 
-<!-- ─── HERO ─── -->
+<!-- HERO -->
 <section id="hero">
-  <div class="hero-logo-wrap">
-    <!-- SOSTITUISCI CON IL TUO LOGO: <img src="images/logo.png" alt="FeaMoments Logo" /> -->
-    <div class="hero-logo-placeholder">LOGO</div>
-  </div>
   <h1 class="hero-brand">FeaMoments</h1>
   <p class="hero-sub">PhotoBooth &amp; VideoBooth</p>
   <div class="hero-divider"></div>
+  <div class="hero-logo-wrap">
+  <img src="images/LogoProduct.png" alt="Prodotti FeaMoments" style="width: 800px; height: auto; margin-bottom: 2rem;">  
+  </div>
   <p class="hero-tagline">Ogni festa ha un'anima. Noi la catturiamo.</p>
   <div class="hero-cta">
     <a href="#servizi" class="btn-primary">Scopri i Nostri Servizi</a>
   </div>
 </section>
 
-<!-- ─── SERVIZI ─── -->
+<!-- SERVIZI -->
 <section id="servizi">
   <div class="centered">
     <p class="section-label">Cosa offriamo</p>
-    <h2 class="section-title" style="color:var(--navy)">I Nostri Servizi</h2>
+    <h2 class="section-title">I Nostri Servizi</h2>
     <div class="section-divider"></div>
   </div>
-
   <div class="servizi-grid">
-
-    <!-- FeaMirror -->
     <article class="servizio-card">
       <div class="card-img-wrap">
-        <!-- SOSTITUISCI: <img src="images/logo-feamirror.jpg" alt="FeaMirror" /> -->
-        <div class="card-img-placeholder">LOGO<br>FeaMirror</div>
+        <img src="images/logoFeaMirror.png" alt="FeaMirror Icon">
       </div>
       <h3>FeaMirror</h3>
-      <p>Eleganza vintage, tecnologia moderna, ricordi infiniti. Il FeaMirror scatta e stampa foto illimitate per i tuoi ospiti — istantaneamente, con stile. Il photobooth che non passa inosservato.</p>
-      <a href="feamirror.html" class="btn-card">Scopri di più e Richiedi un preventivo →</a>
+      <p>Eleganza vintage, tecnologia moderna, ricordi infiniti. Il photobooth che non passa inosservato.</p>
+      <a href="feamirror.html" class="btn-card">Scopri di più →</a>
     </article>
-
-    <!-- FeaMirror Selfie -->
     <article class="servizio-card">
       <div class="card-img-wrap">
-        <!-- SOSTITUISCI: <img src="images/logo-feamirror-selfie.png" alt="FeaMirror Selfie" /> -->
-        <div class="card-img-placeholder">LOGO<br>Selfie</div>
+        <img src="images/logo_FeaMirrorSelfie.png" alt="FeaMirrorSelfie Icon">
       </div>
       <h3>FeaMirror Selfie</h3>
-      <p>Tutta la magia del FeaMirror, in palmo di mano. Il FeaMirror Selfie è lo specchio photobooth interattivo che puoi tenere tra le mani — scatta, stampa istantaneamente e porta il divertimento ovunque nella festa. Foto illimitate, un'esperienza unica!</p>
-      <a href="feamirror-selfie.html" class="btn-card">Scopri di più e Richiedi un preventivo →</a>
+      <p>Tutta la magia del FeaMirror, in palmo di mano. Scatta e stampa istantaneamente ovunque nella festa.</p>
+      <a href="feamirrorselfie.html" class="btn-card">Scopri di più →</a>
     </article>
-
-    <!-- Fea360 -->
     <article class="servizio-card">
       <div class="card-img-wrap">
-        <!-- SOSTITUISCI: <img src="images/logo-fea360.png" alt="Fea360" /> -->
-        <div class="card-img-placeholder">LOGO<br>Fea360</div>
+        <img src="images/logo_Fea360.png" alt="Fea360 Icon">
       </div>
       <h3>Fea360</h3>
-      <p>Sali. Balla. Diventa la star della serata. La Fea360 è la pedana videobooth che ti gira intorno a 360 gradi, trasformando ogni momento in un video cinematografico da condividere subito. Un'esperienza immersiva che nessun ospite dimenticherà.</p>
-      <a href="fea360.html" class="btn-card">Scopri di più e Richiedi un preventivo →</a>
+      <p>La pedana videobooth che ti gira intorno a 360 gradi, trasformando ogni momento in un video cinematografico.</p>
+      <a href="fea360.html" class="btn-card">Scopri di più →</a>
     </article>
-
-    <!-- FeaPhone -->
     <article class="servizio-card">
       <div class="card-img-wrap">
-        <!-- SOSTITUISCI: <img src="images/logo-feaphone.png" alt="FeaPhone" /> -->
-        <div class="card-img-placeholder">LOGO<br>FeaPhone</div>
+        <img src="images/logoFeaPhone.png" alt="FeaPhone Icon">
       </div>
       <h3>FeaPhone</h3>
-      <p>Un gesto semplice. Un ricordo per sempre. Il FeaPhone è il videobooth a forma di telefono vintage che raccoglie i messaggi video più emozionanti dell'evento — quelli sinceri, divertenti, indimenticabili — e li consegna al festeggiato/a da rivedere quando vuole.</p>
-      <a href="feaphone.html" class="btn-card">Scopri di più e Richiedi un preventivo →</a>
+      <p>Il videobooth a forma di telefono vintage che raccoglie i messaggi video più emozionanti dell'evento.</p>
+      <a href="feaphone.html" class="btn-card">Scopri di più →</a>
     </article>
-
   </div>
 </section>
 
-<!-- ─── GALLERIA ─── -->
+<!-- GALLERIA -->
 <section id="galleria">
   <div class="centered">
-    <p class="section-label">I nostri eventi</p>
     <h2 class="section-title">Galleria Eventi</h2>
+    <p class="section-subtitle">Scopri come trasformiamo i tuoi eventi in momenti indimenticabili.</p>
     <div class="section-divider"></div>
-    <p class="gallery-subtitle">Scopri come trasformiamo i tuoi eventi in momenti indimenticabili.</p>
   </div>
 
-  <div class="gallery-grid">
-    <!--
-      ISTRUZIONI: per ogni immagine, sostituisci il div.gallery-item-placeholder
-      con: <img src="images/gallery/foto-01.jpg" alt="Evento 1" />
-      all'interno del div.gallery-item
-    -->
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">01</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">02</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">03</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">04</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">05</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">06</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">07</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">08</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">09</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">10</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">11</span>Inserisci foto</div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-item-placeholder"><span class="num">12</span>Inserisci foto</div>
-    </div>
+  <div class="gallery-container">
+    <button class="nav-btn prev" id="prevBtn">❮</button>
+    
+    <div class="gallery-wrapper" id="galleryWrapper">
+   <div class="gallery-item"><img src="images/events/evento1.jpg" alt="Evento 1" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento2.jpg" alt="Evento 2" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento3.jpg" alt="Evento 3" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento4.jpg" alt="Evento 4" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento5.jpg" alt="Evento 5" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento6.jpg" alt="Evento 6" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento7.jpg" alt="Evento 7" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento8.jpg" alt="Evento 8" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento9.jpg" alt="Evento 9" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento10.jpg" alt="Evento 10" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento11.jpg" alt="Evento 11" onclick="openLightbox(this.src)"></div>
+<div class="gallery-item"><img src="images/events/evento12.jpg" alt="Evento 12" onclick="openLightbox(this.src)"></div>
+      </div>
+    <button class="nav-btn next" id="nextBtn">❯</button>
   </div>
 </section>
 
-<!-- ─── PREVENTIVO ─── -->
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+  
+  <div class="lightbox-viewer">
+    <button class="lightbox-arrow prev" onclick="changeLightboxImg(-1)">❮</button>
+    
+    <div class="lightbox-content-wrapper">
+      <img class="lightbox-content" id="lightboxImg">
+    </div>
+    
+    <button class="lightbox-arrow next" onclick="changeLightboxImg(1)">❯</button>
+  </div>
+</div>
+
+<!-- Preventivo -->
 <section id="preventivo">
   <div class="preventivo-inner">
     <div class="centered">
-      <p class="section-label">Personalizza la tua esperienza</p>
-      <h2 class="section-title" style="color:var(--navy)">Richiedi un Preventivo</h2>
-      <div class="section-divider"></div>
-      <p style="font-family:var(--font-body);font-size:0.95rem;color:rgba(0,31,63,0.7);max-width:500px;margin:0 auto 2.5rem;">
-        Compila i campi sottostanti per ricevere un'offerta personalizzata e rendere il tuo prossimo evento memorabile.
-      </p>
+      <h2 class="section-title">Richiedi un Preventivo</h2>
+      <p class="form-subtitle">Compila i campi sottostanti per ricevere un'offerta personalizzata e rendere il tuo prossimo evento memorabile.</p>
     </div>
 
-    <form id="preventivoForm" onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="nome">Nome *</label>
-          <input type="text" id="nome" name="nome" required placeholder="Mario" />
-        </div>
-        <div class="form-group">
-          <label for="cognome">Cognome *</label>
-          <input type="text" id="cognome" name="cognome" required placeholder="Rossi" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" required placeholder="mario@esempio.it" />
-        </div>
-        <div class="form-group">
-          <label for="telefono">Numero di telefono *</label>
-          <input type="tel" id="telefono" name="telefono" required placeholder="+39 366 315 9931" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="data">Data dell'evento previsto *</label>
-          <input type="date" id="data" name="data" required />
-        </div>
-        <div class="form-group">
-          <label for="luogo">Luogo dell'evento previsto *</label>
-          <input type="text" id="luogo" name="luogo" required placeholder="Napoli, NA" />
-        </div>
-      </div>
+    <form id="preventivoForm" action="https://formspree.io/f/xpqkoebz" method="POST">
+  <div class="form-row">
+    <div class="form-group"><label>Nome *</label><input type="text" name="nome" required></div>
+    <div class="form-group"><label>Cognome *</label><input type="text" name="cognome" required></div>
+  </div>
 
-      <div class="form-group">
-        <label>Tipo di servizio richiesto *</label>
-        <div class="checkbox-group">
-          <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaMirror" /> FeaMirror</label>
-          <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaMirrorSelfie" /> FeaMirror Selfie</label>
-          <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaPhone" /> FeaPhone</label>
-          <label class="checkbox-label"><input type="checkbox" name="servizio" value="Fea360" /> Fea360</label>
-          <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaVideoBox" /> FeaVideoBox</label>
-          <label class="checkbox-label"><input type="checkbox" name="servizio" value="Altro" /> Altro</label>
-        </div>
-      </div>
+  <div class="form-row">
+    <div class="form-group"><label>Email *</label><input type="email" name="email" required></div>
+    <div class="form-group"><label>Numero di telefono *</label><input type="tel" id="telefono_input" name="telefono" required></div>
+  </div>
 
-      <div class="form-group">
-        <label for="messaggio">Messaggio aggiuntivo</label>
-        <textarea id="messaggio" name="messaggio" placeholder="Raccontaci il tuo evento..."></textarea>
-      </div>
+  <div class="form-group">
+    <label>Data dell'evento previsto *</label>
+    <input type="date" id="data_input" name="data_evento" required>
+  </div>
 
-      <button type="submit" class="btn-submit">Invia Richiesta</button>
-      <p class="form-note" style="margin-top:1rem;">
-        Il form invierà una email a <strong>feamoments@gmail.com</strong>. 
-        In alternativa, scrivici direttamente.
-      </p>
-    </form>
+  <div class="form-group">
+    <label>Luogo dell'evento previsto *</label>
+    <input type="text" name="luogo" placeholder="Inserisci la città o la location" required>
+  </div>
+
+  <div class="form-group">
+    <label>Tipo di servizio richiesto *</label>
+    <div class="checkbox-group">
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaMirror"> FeaMirror</label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaMirror Selfie"> FeaMirror Selfie</label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaPhone"> FeaPhone</label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="Fea360"> Fea360</label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="Altro"> Altro</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Messaggio aggiuntivo</label>
+    <textarea name="messaggio" rows="5" placeholder="Raccontaci di più sul tuo evento..."></textarea>
+  </div>
+
+  <input type="hidden" id="email_subject" name="_subject" value="Richiesta Preventivo">
+
+  <button type="submit" class="btn-submit">Invia richiesta</button>
+</form>
   </div>
 </section>
 
-<!-- ─── CONTATTI ─── -->
 <section id="contatti">
-  <div class="centered">
-    <p class="section-label">Siamo qui per te</p>
-    <h2 class="section-title">Contattaci</h2>
-    <div class="section-divider"></div>
-  </div>
-
   <div class="contatti-layout">
-    <div>
+    
+    <div class="contact-info">
+      <h2 class="section-title">Contattaci</h2>
+      
       <div class="contact-info-item">
-        <div class="contact-icon">✉</div>
-        <div>
-          <p class="contact-info-label">Email</p>
-          <p class="contact-info-text"><a href="mailto:feamoments@gmail.com">feamoments@gmail.com</a></p>
-        </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" class="contact-icon">
+        <a href="mailto:feamoments@gmail.com">feamoments@gmail.com</a>
       </div>
+      
       <div class="contact-info-item">
-        <div class="contact-icon">☎</div>
-        <div>
-          <p class="contact-info-label">Telefono</p>
-          <p class="contact-info-text"><a href="tel:+393663159931">+39 366 315 9931</a></p>
-        </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="contact-icon">
+        <a href="https://wa.me/393663159931" target="_blank">+39 366 315 9931</a>
       </div>
+      
       <div class="contact-info-item">
-        <div class="contact-icon">📷</div>
-        <div>
-          <p class="contact-info-label">Instagram</p>
-          <p class="contact-info-text">
-            <a href="https://www.instagram.com/feamoments" target="_blank" rel="noopener">@feamoments</a>
-          </p>
-        </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" class="contact-icon">
+        <a href="https://instagram.com/feamoments" target="_blank">@feamoments</a>
       </div>
 
-      <div class="social-links">
-        <a href="https://www.facebook.com/feamirror" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">f</a>
-        <a href="https://www.instagram.com/feamoments" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">in</a>
-        <a href="https://www.tiktok.com/@feamoments_" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">tt</a>
-        <a href="tel:+393663159931" class="social-link" aria-label="Telefono">☎</a>
+      <div class="contact-info-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="Tiktok" class="contact-icon">
+        <a href="https://www.tiktok.com/@feamoments_">@feamoments_</a>
       </div>
     </div>
 
-    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-      <!-- SOSTITUISCI CON IL TUO LOGO: <img src="images/logo-complete.png" alt="FeaMoments" style="max-width:200px;margin:0 auto 1.5rem;" /> -->
-      <div style="width:140px;height:140px;border:2px solid rgba(218,165,32,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:var(--font-menu);color:var(--gold);font-size:1rem;letter-spacing:0.1em;">LOGO</div>
-      <p style="font-family:var(--font-title);font-style:italic;font-size:1.4rem;color:rgba(255,255,255,0.8);line-height:1.4;">
-        "Ogni festa ha un'anima.<br>Noi la catturiamo."
-      </p>
+    <div class="contact-logo-area">
+      <img src="images/logoFeaMoments.png" alt="FeaMoments Logo" class="contact-big-logo">
     </div>
+
   </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
-<footer>
-  <p class="footer-tagline">Cattura Ricordi, Divertiti con Stile.</p>
-  <p class="footer-logo">FeaMoments</p>
-  <nav class="footer-nav" aria-label="Footer navigation">
-    <a href="#hero">Home</a>
-    <a href="#servizi">Servizi</a>
-    <a href="#galleria">Galleria</a>
-    <a href="partner.html">Diventa Partner</a>
-    <a href="#contatti">Contattaci</a>
-    <a href="#preventivo">Preventivo</a>
-  </nav>
-  <p>&copy; 2026 FeaMoments. Tutti i diritti riservati.</p>
+
+<footer class="main-footer">
+  <div class="footer-clouds">
+    <div class="clouds-text">
+      <p>Ogni festa ha un'anima. Noi la catturiamo.</p>
+    </div>
+  </div>
+
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div class="footer-brand">
+        <img src="images/logoFeaMoments.png" alt="FeaMoments" class="mini-logo">
+      </div>
+      
+      <div class="footer-socials">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="FB"></a>
+        <a href="https://instagram.com/feamoments"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="IG"></a>
+        <a href="https://www.tiktok.com/@feamoments_"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TK"></a>
+        <a href="https://wa.me/393663159931"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WA"></a>
+      </div>
+
+      <div class="footer-copy">
+        <p>© 2026 FeaMoments. Cattura Ricordi, Divertiti con Stile.</p>
+      </div>
+    </div>
+  </div>
 </footer>
 
-<!-- ─── JS ─── -->
-<script>
-  // Mobile nav toggle
-  const toggle = document.getElementById('navToggle');
-  const links  = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-
-  // Close mobile nav on link click
-  links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
-  });
-
-  // Smooth scroll offset for fixed navbar
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        const offset = 75;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
-  });
-
-  // Form submit — apre email client
-  function handleSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    const nome     = form.nome.value;
-    const cognome  = form.cognome.value;
-    const email    = form.email.value;
-    const telefono = form.telefono.value;
-    const data     = form.data.value;
-    const luogo    = form.luogo.value;
-    const servizi  = [...form.querySelectorAll('input[name=servizio]:checked')].map(c => c.value).join(', ');
-    const msg      = form.messaggio.value;
-
-    const subject = encodeURIComponent(`Richiesta Preventivo FeaMoments - ${nome} ${cognome}`);
-    const body = encodeURIComponent(
-`Nome: ${nome} ${cognome}
-Email: ${email}
-Telefono: ${telefono}
-Data evento: ${data}
-Luogo: ${luogo}
-Servizi: ${servizi || 'Non specificato'}
-Messaggio: ${msg}`
-    );
-
-    window.location.href = `mailto:feamoments@gmail.com?subject=${subject}&body=${body}`;
-  }
-
-  // Scroll animation for cards
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        entry.target.style.animation = `fadeUp 0.6s ease ${i * 0.1}s forwards`;
-        entry.target.style.opacity = '0';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.servizio-card, .gallery-item').forEach(el => {
-    el.style.opacity = '0';
-    observer.observe(el);
-  });
-</script>
-
+<!-- Collegamento al file JS esterno -->
+<script src="script.js"></script>
 </body>
 </html>
