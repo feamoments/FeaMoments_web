@@ -123,7 +123,7 @@ section { padding: 4rem 2rem; }
   color: var(--white);
 }
 
-/* ─── CARDS SERVIZI (VERSIONE DEFINITIVA CON TESTI SCURI) ─── */
+/* ─── CARDS SERVIZI ─── */
 .servizi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -509,9 +509,9 @@ section { padding: 4rem 2rem; }
 }
 
 #contatti .section-title {
-    color: var(--gold) !important; /* Forza il colore Navy */
-    text-align: left;              /* Mantiene l'allineamento a sinistra come nello screenshot */
-    font-size: 3.5rem;             /* Opzionale: per renderlo grande come in foto */
+  color: var(--gold) !important; /* Forza il colore Navy */
+  text-align: left;              /* Mantiene l'allineamento a sinistra come nello screenshot */
+  font-size: 3.5rem;             /* Opzionale: per renderlo grande come in foto */
     margin-bottom: 2rem;
 }
 
@@ -647,4 +647,627 @@ section { padding: 4rem 2rem; }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── PAGINA PRODOTTO FEAMIRROR  ─── */
+
+.product-page {
+    background-color: var(--navy) !important;
+}
+
+/* Griglia: Testo a Sinistra, Immagine a Destra */
+.product-container {
+    display: grid !important;
+    grid-template-columns: 1.2fr 1fr !important; 
+    gap: 5rem;
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 140px 2rem 6rem;
+    align-items: start;
+    width: 100%;
+}
+
+/* 1. IMMAGINE (DESTRA) - Pulizia del Box Blu */
+/* ─── FIX DEFINITIVO IMMAGINE (DESTRA) ─── */
+
+.product-image {
+    display: flex;
+    justify-content: flex-end; /* Spinge l'immagine verso il bordo destro */
+    align-items: flex-start;
+    background: transparent !important; /* Elimina qualsiasi colore di sfondo residuo */
+    padding: 0 !important;             /* Elimina spazi interni che creano il "box" */
+    border: none !important;
+    position: sticky;
+    top: 120px;
+    /* Rimuoviamo eventuali box-shadow o border-radius dal contenitore */
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.product-image img {
+    width: auto;               /* Permette alla foto di mantenere le sue proporzioni reali */
+    max-width: 100%;           /* Non esce mai dal contenitore */
+    height: auto;
+    max-height: 85vh;          /* Si adatta all'altezza dello schermo */
+    object-fit: contain;
+    display: block;
+    
+    /* STILE WIX: Applichiamo bordi e ombra SOLO all'immagine stessa */
+    border-radius: 20px;       /* Bordi arrotondati sulla foto */
+    border: 1px solid rgba(218, 165, 32, 0.3); /* Sottile bordo oro */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); /* Ombra profonda per staccarla dallo sfondo */
+}
+
+/* 2. TESTI (SINISTRA) */
+.product-title {
+    font-family: var(--font-title);
+    font-size: clamp(3.5rem, 7vw, 5.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--gold) !important; /* Titolo ORO */
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+}
+
+.product-subtitle {
+    font-family: var(--font-title);
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--gold) !important; /* Sottotitolo ORO */
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+}
+
+.product-description p {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: var(--white) !important; /* Descrizione BIANCA */
+    margin-bottom: 1.5rem;
+}
+
+.product-description strong, 
+.features-list li strong {
+    color: var(--white) !important; /* Parole chiave in ORO */
+    font-weight: 800;
+}
+
+.service-header {
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--gold) !important; /* Titolo Service ORO */
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 3rem;
+}
+
+.features-list li {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--white) !important; /* Elenco BIANCO */
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.features-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--gold) !important; /* Puntini ORO */
+    font-size: 1.8rem;
+    top: -5px;
+}
+
+/* 3. RESPONSIVE MOBILE */
+/* --- RESPONSIVE MOBILE (Sotto i 992px) --- */
+@media (max-width: 992px) {
+  .product-container {
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 100px;
+    gap: 2rem;
+    text-align: center; /* Centra i testi su mobile */
+  }
+
+  /* ORDINE 1: Titolo e Sottotitolo */
+  .product-header {
+    order: 1;
+    margin-bottom: 1rem;
+  }
+
+  /* ORDINE 2: L'Immagine */
+  .product-image {
+    order: 2;
+    position: static; /* Rimuove lo sticky su mobile */
+    margin: 1rem 0;
+  }
+  
+  .product-image img {
+    max-height: 400px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  /* ORDINE 3: Descrizione e lista */
+  .product-details {
+    order: 3;
+    text-align: left; /* La descrizione è meglio leggerla allineata a sinistra */
+  }
+
+  .features-list li {
+    justify-content: flex-start;
+  }
+}
+
+/* --- AGGIUSTAMENTO PER DESKTOP (Sopra i 992px) --- */
+@media (min-width: 993px) {
+  .product-container {
+    display: grid !important;
+    grid-template-columns: 1.2fr 1fr !important;
+    grid-template-areas: 
+      "header image"
+      "details image";
+    gap: 3rem 5rem;
+  }
+
+  .product-header { grid-area: header; }
+  .product-details { grid-area: details; }
+  .product-image   { grid-area: image; }
+}
+
+/* ─── VARIANTE DARK PER IL FORM (Navy Background) ─── */
+.section-dark-bg {
+  background-color: var(--navy) !important;
+  border-top: 1px solid rgba(218, 165, 32, 0.2);
+}
+
+.section-dark-bg .section-title {
+  color: var(--gold) !important;
+}
+
+.section-dark-bg .form-group label {
+  color: var(--gold) !important;
+}
+
+.section-dark-bg input, 
+.section-dark-bg textarea,
+.section-dark-bg select {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(218, 165, 32, 0.4) !important;
+  color: var(--white) !important;
+}
+
+.section-dark-bg .checkbox-label {
+  color: var(--white) !important;
+}
+
+.section-dark-bg .form-subtitle {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Responsive per Tablet/Mobile */
+@media (max-width: 992px) {
+  .product-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 100px;
+  }
+  .features-list li {
+    justify-content: center;
+  }
+}
+
+
+/* PAGINA PARTNER */
+
+/* 1. Modifica il titolo per l'oro e la riga singola */
+.partner-hero-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.;
+  margin-bottom: 2rem;
+}
+
+/* Nuova classe per la scritta Fea Moments in oro */
+.gold-text {
+  color: var(--gold);
+  font-style: italic;
+  white-space: nowrap; /* Impedisce l'andata a capo */
+}
+
+/* 2. Nuovo wrapper per l'immagine a tutta larghezza (Full Width) */
+.full-width-img-container {
+  width: 100vw; /* Occupa tutta la larghezza dello schermo */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.full-width-img-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  /* Ombra dorata come nel tuo stile originale */
+  filter: drop-shadow(0 10px 40px rgba(218,165,32,0.2));
+}
+
+/* 3. Sottotesto dorato e corsivo */
+.partner-hero-sub.gold-highlight {
+  color: var(--white);
+  font-family: var(--font-accent); /* Cormorant Garamond */
+  font-style: italic;
+  font-size: 1.2rem;
+  max-width: 800px;
+}
+
+/* ─── HERO PARTNER ─── */
+#partner-hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 2rem 6rem;
+  color: var(--white);
+}
+
+.partner-hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  animation: fadeUp 0.9s ease both;
+}
+
+.partner-hero-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 2.5rem;
+}
+
+.partner-hero-img-wrap {
+  margin: 0 auto 2.5rem;
+  max-width: 700px;
+}
+
+.partner-hero-img-wrap img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 40px rgba(218,165,32,0.25));
+}
+
+.partner-hero-sub {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.partner-hero-btns {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-partner-primary {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 1rem 2.2rem;
+  font-family: var(--font-menu);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+
+.btn-partner-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.btn-partner-outline {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 1rem 2.2rem;
+  font-family: var(--font-menu);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+
+.btn-partner-outline:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* ─── NUOVA SEZIONE VANTAGGI (STILE IMMAGINE) ─── */
+.section-benefits-navy {
+  background-color: #001529; /* Navy scuro */
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.section-benefits-navy .section-title {
+  color: #ffffff !important; /* Forza il titolo in bianco */
+}
+
+.benefits-grid-row {
+  display: grid;
+  grid-template-columns: 1fr; /* Una colonna su mobile */
+  gap: 1.2rem;
+  max-width: 1400px;
+  margin: 3rem auto 0;
+}
+
+/* Display su PC: Tutte le box sulla stessa riga */
+@media (min-width: 1024px) {
+  .benefits-grid-row {
+    grid-template-columns: repeat(5, 1fr); /* 5 colonne su una riga */
+  }
+}
+
+.benefit-card-gold {
+  background-color: #c59d33; /* Oro ocra come nell'immagine */
+  padding: 3rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 420px;
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.benefit-card-gold:hover {
+  transform: translateY(-10px);
+}
+
+/* Icona bordeaux/marrone scuro */
+.benefit-card-gold .benefit-icon {
+  font-size: 4rem;
+  color: #7a1a1a; 
+  margin-bottom: 2rem;
+}
+
+/* Titolo della card bordeaux/marrone scuro */
+.benefit-card-gold h3 {
+  color: #7a1a1a;
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+/* Testo della descrizione bianco */
+.benefit-card-gold p {
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: auto; /* Allinea il testo in basso */
+}
+/* ─── SEZIONE VANTAGGI OTTIMIZZATA MOBILE ─── */
+.section-benefits-navy {
+  background-color: #001529;
+  padding: 4rem 1.5rem; /* Padding ridotto per mobile */
+}
+
+@media (min-width: 1024px) {
+  .section-benefits-navy { padding: 8rem 2rem; }
+}
+
+.benefits-grid-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .benefits-grid-row { grid-template-columns: repeat(5, 1fr); }
+}
+
+.benefit-card-gold {
+  background-color: #c59d33;
+  padding: 2rem 1.5rem; /* Più piccolo su mobile */
+  text-align: center;
+  border: 2px solid #7a1a1a; /* Bordo rosso scuro */
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .benefit-card-gold {
+    padding: 3.5rem 2rem;
+    min-height: 420px; /* Altezza fissa solo su PC */
+  }
+}
+
+.benefit-card-gold .benefit-icon {
+  font-size: 3.5rem; /* Icona più proporzionata */
+  color: #7a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+.benefit-card-gold h3 {
+  color: #7a1a1a;
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.benefit-card-gold p {
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+/* ─── SEZIONE CHI PUO DIVENTARE PARTNER (STILE IMMAGINE) ─── */
+.section-who-navy {
+  background-color: #001529;
+  padding: 6rem 1.5rem;
+  color: #ffffff;
+}
+
+@media (min-width: 1024px) {
+  .section-who-navy { padding: 8rem 4rem; }
+}
+
+.who-title-gold {
+  font-family: 'Bodoni Moda', serif;
+  color: #daa520;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  margin-bottom: 1rem;
+}
+
+.who-subtitle-gold {
+  font-size: 1.3rem;
+  color: white;
+  max-width: 700px;
+  line-height: 1.4;
+  margin-bottom: 4rem;
+}
+
+.who-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .who-columns { grid-template-columns: 1.1fr 0.9fr; align-items: center; }
+}
+
+.who-box-gold {
+  background-color: #c59d33;
+  border: 4px solid #7a1a1a; /* Bordo rosso scuro */
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 4px;
+}
+
+.who-box-gold h4 {
+  color: #7a1a1a;
+  font-weight: 900;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+
+.who-box-gold p { color: #7a1a1a; font-size: 0.9rem; margin: 0; }
+
+/* Immagine con arco curvo */
+.who-image-arch {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-bottom-left-radius: 120px;
+  border-top-right-radius: 120px;
+  border-bottom-right-radius: 120px;
+}
+
+/* Banner CTA finale con bordo oro */
+.who-cta-banner-gold {
+  margin-top: 6rem;
+  border: 2px solid #daa520;
+  border-radius: 12px;
+  padding: 3rem;
+}
+
+.who-cta-banner-gold h5 {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.who-cta-banner-gold .italic-gold {
+  font-family: 'Bodoni Moda', serif;
+  font-style: italic;
+  color: #daa520;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── SELECT nel form dark ─── */
+.section-dark-bg select {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(218, 165, 32, 0.4) !important;
+  color: var(--white) !important;
+  padding: 0.8rem;
+  font-family: var(--font-body);
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
+  appearance: none;
+  cursor: pointer;
+}
+
+.section-dark-bg select option {
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* ─── RESPONSIVE PARTNER ─── */
+@media (max-width: 992px) {
+  .partner-who-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .partner-who-img img {
+    height: 350px;
+  }
+  .benefits-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .partner-hero-title {
+    font-size: 2.2rem;
+  }
+  .partner-hero-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-partner-primary,
+  .btn-partner-outline {
+    width: 100%;
+    text-align: center;
+  }
+  .partner-cta-banner {
+    padding: 2.5rem 1.5rem;
+  }
+  .partner-cta-banner p {
+    font-size: 1.5rem;
+  }
 }
