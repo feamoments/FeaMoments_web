@@ -86,12 +86,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const partnerForm = document.getElementById('partnerForm');
     if (partnerForm) {
         partnerForm.addEventListener('submit', function(e) {
-            const nomeAttivita = document.getElementById('partner_business').value;
-            const telefonoPartner = document.getElementById('partner_tel').value;
+            // Usiamo i selettori name o controlliamo che l'ID esista prima di leggere .value
+            const nomeAttivitaEl = document.getElementById('partner_business');
+            const telefonoPartnerEl = document.getElementById('partner_tel');
             const subjectField = document.getElementById('partner_subject');
+
+            const nomeAttivita = nomeAttivitaEl ? nomeAttivitaEl.value : "N/A";
+            const telefonoPartner = telefonoPartnerEl ? telefonoPartnerEl.value : "N/A";
+
             if (subjectField) {
                 subjectField.value = `Nuova Collaborazione - ${nomeAttivita} - ${telefonoPartner}`;
             }
+            
+            // OPZIONALE: Se vuoi essere sicuro che parta, non aggiungere e.preventDefault()
+            // Lascia che il form faccia il suo corso verso Formspree.
         });
     }
 
