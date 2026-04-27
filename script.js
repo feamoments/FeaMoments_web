@@ -59,34 +59,69 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. GESTIONE INVIO FORM PREVENTIVO
+    // 5. GESTIONE INVIO FORM PREVENTIVO (Versione AJAX/Fetch)
     const preventivoForm = document.getElementById('preventivoForm');
     if (preventivoForm) {
         preventivoForm.addEventListener('submit', function(e) {
+            // 1. Validazione Checkbox
             const serviziSelezionati = this.querySelectorAll('input[name="servizio"]:checked');
             
             if (serviziSelezionati.length === 0) {
                 e.preventDefault(); 
                 e.stopPropagation();
                 alert("⚠️ Errore: Devi selezionare almeno un tipo di servizio per procedere!");
-                document.querySelector('.checkbox-group').scrollIntoView({ behavior: 'smooth' });
+                const checkboxGroup = document.querySelector('.checkbox-group');
+                if (checkboxGroup) checkboxGroup.scrollIntoView({ behavior: 'smooth' });
                 return false;
             }
 
-            const dataEv = document.getElementById('data_input').value;
-            const tel = document.getElementById('telefono_input').value;
+            // 2. Blocchiamo l'invio standard per gestire il Fetch
+            e.preventDefault();
+
+            // 3. Aggiornamento Dinamico dell'Oggetto
+            const dataEvEl = document.getElementById('data_input');
+            const telEl = document.getElementById('telefono_input');
             const subjectField = document.getElementById('email_subject');
+
+            const dataEv = dataEvEl ? dataEvEl.value : "N/D";
+            const tel = telEl ? telEl.value : "N/D";
+
             if (subjectField) {
                 subjectField.value = `Richiesta Preventivo - ${dataEv} - ${tel}`;
             }
+
+            // 4. Invio a Formspree tramite Fetch
+            const form = e.target;
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Grazie! La tua richiesta di preventivo è stata inviata. Ti risponderemo al più presto.');
+                    form.reset(); // Svuota i campi del form
+                } else {
+                    alert('Ops! C\'è stato un problema con l\'invio del form. Riprova più tardi.');
+                }
+            })
+            .catch(error => {
+                alert('Errore di connessione. Controlla la tua rete e riprova.');
+            });
         });
     }
 
-    // 6. GESTIONE FORM PARTNER
+    // 6. GESTIONE FORM PARTNER (Versione Definitiva)
     const partnerForm = document.getElementById('partnerForm');
     if (partnerForm) {
         partnerForm.addEventListener('submit', function(e) {
-            // Usiamo i selettori name o controlliamo che l'ID esista prima di leggere .value
+            e.preventDefault(); // Impedisce il ricaricamento della pagina
+
+            // A. AGGIORNAMENTO DINAMICO DELL'OGGETTO
             const nomeAttivitaEl = document.getElementById('partner_business');
             const telefonoPartnerEl = document.getElementById('partner_tel');
             const subjectField = document.getElementById('partner_subject');
@@ -97,9 +132,27 @@ document.addEventListener('DOMContentLoaded', () => {
             if (subjectField) {
                 subjectField.value = `Nuova Collaborazione - ${nomeAttivita} - ${telefonoPartner}`;
             }
-            
-            // OPZIONALE: Se vuoi essere sicuro che parta, non aggiungere e.preventDefault()
-            // Lascia che il form faccia il suo corso verso Formspree.
+
+            // B. INVIO EFFETTIVO A FORMSPREE
+            const form = e.target;
+            const data = new FormData(form);
+
+            fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert('Grazie! Ti ricontatteremo entro 24/48 ore.');
+                    form.reset();
+                } else {
+                    alert('Ops! Si è verificato un errore durante l\'invio.');
+                }
+            }).catch(error => {
+                alert('Errore di connessione. Riprova più tardi.');
+            });
         });
     }
 
