@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FeaMoments | PhotoBooth & VideoBooth per Eventi</title>
+  <title>FeaMoments | <span class="notranslate">PhotoBooth & VideoBooth</span> per Eventi</title>
   <meta name="description" content="FeaMoments - Photobooth e Videobooth per eventi indimenticabili. FeaMirror, FeaPhone, Fea360 e molto altro." />
 
   <!-- Google Fonts -->
@@ -16,7 +16,7 @@
 
 <!-- NAVBAR -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">
+  <a href="#hero" class="nav-logo">
     <img src="images/logoFeaMoments.png" alt="FeaMoments Logo">
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu">
@@ -33,17 +33,34 @@
         <li><a href="fea360.html">Fea360</a></li>
       </ul>
     </li>
-    <li><a href="#galleria">Galleria</a></li>
-    <li><a href="partner.html">Diventa Partner</a></li>
+    <li><a href="index.html#galleria">Galleria</a></li>    <li><a href="partner.html">Diventa Partner</a></li>
     <li><a href="#contatti">Contattaci</a></li>
     <li><a href="#preventivo" class="btn-preventivo">Richiedi Preventivo</a></li>
+
+    <li class="dropdown lang-dropdown">
+  <a href="javascript:void(0);" id="currentLang">
+    <img src="https://flagcdn.com/w20/it.png" id="langFlag"> <span id="langName">IT</span> ▾
+  </a>
+  <ul class="dropdown-menu lang-menu">
+    <li>
+      <a href="javascript:void(0);" onclick="changeLanguage('it', 'IT', 'https://flagcdn.com/w20/it.png')">
+        <img src="https://flagcdn.com/w20/it.png"> Italiano
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0);" onclick="changeLanguage('en', 'EN', 'https://flagcdn.com/w20/gb.png')">
+        <img src="https://flagcdn.com/w20/gb.png"> English
+      </a>
+    </li>
   </ul>
+</li>
+<div id="google_translate_element" style="display:none;"></div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <h1 class="hero-brand">FeaMoments</h1>
-  <p class="hero-sub">PhotoBooth &amp; VideoBooth</p>
+  <h1 class="hero-brand"><span class="notranslate">FeaMoments</span></h1>
+  <p class="hero-sub"><span class="notranslate">PhotoBooth &amp; VideoBooth</span></p>
   <div class="hero-divider"></div>
   <div class="hero-logo-wrap">
   <img src="images/LogoProduct.png" alt="Prodotti FeaMoments" style="width: 800px; height: auto; margin-bottom: 2rem;">  
@@ -66,7 +83,7 @@
       <div class="card-img-wrap">
         <img src="images/logoFeaMirror.png" alt="FeaMirror Icon">
       </div>
-      <h3>FeaMirror</h3>
+      <h3><span class="notranslate">FeaMirror</span></h3>
       <p>Eleganza vintage, tecnologia moderna, ricordi infiniti. Il photobooth che non passa inosservato.</p>
       <a href="feamirror.html" class="btn-card">Scopri di più →</a>
     </article>
@@ -74,7 +91,7 @@
       <div class="card-img-wrap">
         <img src="images/logo_FeaMirrorSelfie.png" alt="FeaMirrorSelfie Icon">
       </div>
-      <h3>FeaMirror Selfie</h3>
+      <h3><span class="notranslate">FeaMirror Selfie</span></h3>
       <p>Tutta la magia del FeaMirror, in palmo di mano. Scatta e stampa istantaneamente ovunque nella festa.</p>
       <a href="feamirrorselfie.html" class="btn-card">Scopri di più →</a>
     </article>
@@ -90,7 +107,7 @@
       <div class="card-img-wrap">
         <img src="images/logoFeaPhone.png" alt="FeaPhone Icon">
       </div>
-      <h3>FeaPhone</h3>
+      <h3><span class="notranslate">FeaPhone</span></h3>
       <p>Il videobooth a forma di telefono vintage che raccoglie i messaggi video più emozionanti dell'evento.</p>
       <a href="feaphone.html" class="btn-card">Scopri di più →</a>
     </article>
@@ -98,6 +115,7 @@
 </section>
 
 <!-- GALLERIA -->
+<!--
 <section id="galleria">
   <div class="centered">
     <h2 class="section-title">Galleria Eventi</h2>
@@ -108,7 +126,7 @@
   <div class="gallery-container">
     <button class="nav-btn prev" id="prevBtn">❮</button>
     
-    <div class="gallery-wrapper" id="galleryWrapper">
+  <div class="gallery-wrapper" id="galleryWrapper">
    <div class="gallery-item"><img src="images/events/evento1.jpg" alt="Evento 1" onclick="openLightbox(this.src)"></div>
 <div class="gallery-item"><img src="images/events/evento2.jpg" alt="Evento 2" onclick="openLightbox(this.src)"></div>
 <div class="gallery-item"><img src="images/events/evento3.jpg" alt="Evento 3" onclick="openLightbox(this.src)"></div>
@@ -139,6 +157,27 @@
     <button class="lightbox-arrow next" onclick="changeLightboxImg(1)">❯</button>
   </div>
 </div>
+-->
+<section id="galleria">
+  <div class="centered">
+    <h2 class="section-title">Galleria Eventi</h2>
+    <p class="section-subtitle">
+      Vivi l'atmosfera dei nostri eventi su 
+      <a href="https://www.instagram.com/feamoments" target="_blank" class="insta-link">Instagram</a>
+    </p>    <div class="section-divider"></div>
+  </div>
+
+  <div class="instagram-feed-wrapper" style="max-width: 1300px; margin: 0 auto; padding: 0 2rem;">
+    <behold-widget feed-id="BM8YI3HPUTb15xrsHHW6"></behold-widget>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const d=document,s=d.createElement("script");s.type="module";
+    s.src="https://w.behold.so/widget.js";d.head.append(s);
+  })();
+</script>
 
 <!-- Preventivo -->
 <section id="preventivo">
@@ -172,9 +211,9 @@
   <div class="form-group">
     <label>Tipo di servizio richiesto *</label>
     <div class="checkbox-group">
-      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaMirror"> FeaMirror</label>
-      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaMirror Selfie"> FeaMirror Selfie</label>
-      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaPhone"> FeaPhone</label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaMirror"> <span class="notranslate">FeaMirror</span></label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaMirror Selfie"> <span class="notranslate">FeaMirror Selfie</span></label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaPhone"> <span class="notranslate">FeaPhone</span></label>
       <label class="checkbox-label"><input type="checkbox" name="servizio" value="Fea360"> Fea360</label>
       <label class="checkbox-label"><input type="checkbox" name="servizio" value="Altro"> Altro</label>
     </div>
@@ -191,7 +230,7 @@
 </form>
   </div>
 </section>
-
+<!---------- Contatti -->
 <section id="contatti">
   <div class="contatti-layout">
     
@@ -226,7 +265,7 @@
   </div>
 </section>
 
-
+<!--    Footer   -->
 <footer class="main-footer">
   <div class="footer-clouds">
     <div class="clouds-text">

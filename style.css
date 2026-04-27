@@ -61,22 +61,73 @@ ul { list-style: none; }
   transition: color var(--transition);
 }
 .nav-links a:hover { color: var(--gold); }
-
-/* Dropdown */
-.dropdown { position: relative; }
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--white);
-  border: 1px solid rgba(218,165,32,0.3);
-  min-width: 180px;
-  padding: 0.6rem 0;
+/* ─── DROPDOWN DESKTOP (Default) ─── */
+.dropdown { 
+    position: relative; 
 }
-.dropdown:hover .dropdown-menu { display: block; }
-.dropdown-menu a { padding: 0.5rem 1rem; display: block; font-size: 0.75rem; }
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border: 1px solid rgba(218, 165, 32, 0.3);
+    min-width: 180px;
+    padding: 0.6rem 0;
+    z-index: 1001;
+}
+
+/* Mostra al passaggio del mouse solo su Desktop */
+@media (min-width: 769px) {
+    .dropdown:hover .dropdown-menu { 
+        display: block; 
+    }
+}
+
+.dropdown-menu a { 
+    padding: 0.5rem 1rem; 
+    display: block; 
+    font-size: 0.75rem; 
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(218, 165, 32, 0.1);
+    color: var(--gold);
+}
+
+/* ─── RESPONSIVE MOBILE ─── */
+@media (max-width: 768px) {
+    /* Spostiamo il menu a tendina nel flusso del testo */
+    .dropdown-menu {
+        position: static; 
+        transform: none;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.02); /* Sfondo leggero per stacco */
+        border: none;
+        box-shadow: none;
+        padding-left: 1rem; /* Rientro per i figli */
+    }
+
+    /* Classe che aggiungeremo col JS al click */
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    /* Nascondiamo l'hover su mobile per evitare conflitti */
+    .dropdown:hover .dropdown-menu {
+        display: none;
+    }
+    
+    /* Forza la visualizzazione se attiva */
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+}
 
 .btn-preventivo {
   background: var(--gold);
@@ -84,7 +135,74 @@ ul { list-style: none; }
   padding: 0.5rem 1.4rem;
   font-size: 0.78rem;
 }
+/* Stile Bandiere nella Navbar */
+.lang-selector {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: 10px;
+}
 
+.lang-selector img {
+    width: 20px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+    filter: grayscale(0.2);
+}
+
+.lang-selector img:hover {
+    transform: scale(1.2);
+    filter: grayscale(0);
+}
+
+/* Stile specifico per la tendina lingua */
+.lang-dropdown img {
+    width: 18px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.lang-menu {
+    min-width: 120px !important; /* Più stretta rispetto ai servizi */
+}
+
+.lang-menu a {
+    display: flex !important;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Nascondi widget Google e barre fastidiose */
+body { top: 0 !important; }
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+#goog-gt-tt { display: none !important; }
+
+/* Blocca il banner di Google Translate */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+/* Rimuove l'evidenziazione blu (tooltip) che compare sulle parole tradotte */
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Nasconde il contenitore originale del widget se dovesse apparire */
+#google_translate_element {
+    display: none !important;
+}
+
+/* Nasconde gli elementi di Google Translate */
+body { top: 0 !important; }
+.goog-te-banner-frame.skiptranslate, .goog-te-gadget-icon { display: none !important; }
+.goog-te-gadget-simple { background: none !important; border: none !important; }
+.goog-te-menu-value span { display: none !important; }
 /* ─── HERO ─── */
 #hero {
   min-height: 100vh;
@@ -224,6 +342,26 @@ section { padding: 4rem 2rem; }
     padding: 1rem 1rem; 
 }
 
+/* Stile per il contenitore di Behold */
+.instagram-feed-wrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.insta-link {
+    color: var(--gold); /* Usa il tuo colore oro */
+    text-decoration: underline; /* Sottolineatura fissa */
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+
+.insta-link:hover {
+    opacity: 0.8;
+    text-decoration: none; /* La sottolineatura sparisce al passaggio del mouse (effetto moderno) */
+}
+
+/* Rimuovi eventuali vecchi stili della galleria che non usi più 
+   per non appesantire il file (facoltativo) */
+/*
 .gallery-container {
   position: relative;
   max-width: 1300px;
@@ -234,16 +372,16 @@ section { padding: 4rem 2rem; }
 
 .gallery-wrapper {
   display: flex;
-  overflow-x: hidden; /* Nasconde la barra di scorrimento */
+  overflow-x: hidden;
   scroll-behavior: smooth;
   gap: 15px;
   padding: 20px 0;
-  /* Supporto per scorrimento magnetico */
   scroll-snap-type: x mandatory; 
 }
 
+
 .gallery-item {
-  flex: 0 0 calc(25% - 12px); /* 4 foto su desktop */
+  flex: 0 0 calc(25% - 12px); 
   aspect-ratio: 4/5;
   cursor: pointer;
   overflow: hidden;
@@ -261,8 +399,9 @@ section { padding: 4rem 2rem; }
 .gallery-item:hover img {
   transform: scale(1.05);
 }
-
+*/
 /* Frecce di navigazione Carousel */
+/*
 .nav-btn {
   background: var(--gold);
   color: var(--navy);
@@ -282,7 +421,7 @@ section { padding: 4rem 2rem; }
     transform: scale(1.1);
     background: white;
 }
-
+*/
 /* ─── NUOVO LIGHTBOX MODERNO ─── */
 .lightbox {
   display: none; 
@@ -462,9 +601,12 @@ section { padding: 4rem 2rem; }
 /* Checkbox Style */
 .checkbox-group {
   display: flex;
-  flex-direction: column; /* Come nello screenshot, uno sotto l'altro */
+  flex-direction: column; 
   gap: 0.8rem;
   margin-top: 0.5rem;
+  /* Aggiunta: un bordo sottile a sinistra color oro per richiamare gli altri campi */
+  border-left: 2px solid var(--gold);
+  padding-left: 15px;
 }
 
 .checkbox-label {
@@ -1270,4 +1412,37 @@ section { padding: 4rem 2rem; }
   .partner-cta-banner p {
     font-size: 1.5rem;
   }
+}
+
+
+/* 1. Nasconde il frame del banner */
+.goog-te-banner-frame {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* 2. Impedisce a Google di spostare la pagina verso il basso */
+html {
+    margin-top: 0px !important;
+}
+
+body {
+    top: 0px !important;
+    position: static !important;
+}
+
+/* 3. Nasconde il widget originale che Google inietta a volte a fondo pagina */
+.skiptranslate > iframe {
+    height: 0 !important;
+    border: none !important;
+    display: none !important;
+}
+
+/* 4. Rimuove il tooltip blu/grigio quando passi il mouse sul testo tradotto */
+#goog-gt-tt, .goog-te-balloon-frame {
+    display: none !important;
+}
+.goog-text-highlight {
+    background: none !important;
+    box-shadow: none !important;
 }

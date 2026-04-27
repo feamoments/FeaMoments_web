@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fea360 | VideoBooth per eventi - FeaMoments</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="product-page">
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="images/logoFeaMoments.png" alt="FeaMoments Logo">
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#hero">Home</a></li>
+    <li class="dropdown">
+      <a href="#servizi">Servizi ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="feamirror.html">FeaMirror</a></li>
+        <li><a href="feamirrorselfie.html">FeaMirror Selfie</a></li>
+        <li><a href="feaphone.html">FeaPhone</a></li>
+        <li><a href="fea360.html">Fea360</a></li>
+      </ul>
+    </li>
+    <li><a href="index.html#galleria">Galleria</a></li>    <li><a href="partner.html">Diventa Partner</a></li>
+    <li><a href="index.html#contatti">Contattaci</a></li>
+    <li><a href="#preventivo" class="btn-preventivo">Richiedi Preventivo</a></li>
+
+    <li class="dropdown lang-dropdown">
+  <a href="javascript:void(0);" id="currentLang">
+    <img src="https://flagcdn.com/w20/it.png" id="langFlag"> <span id="langName">IT</span> ▾
+  </a>
+  <ul class="dropdown-menu lang-menu">
+    <li>
+      <a href="javascript:void(0);" onclick="changeLanguage('it', 'IT', 'https://flagcdn.com/w20/it.png')">
+        <img src="https://flagcdn.com/w20/it.png"> Italiano
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0);" onclick="changeLanguage('en', 'EN', 'https://flagcdn.com/w20/gb.png')">
+        <img src="https://flagcdn.com/w20/gb.png"> English
+      </a>
+    </li>
+  </ul>
+</li>
+<div id="google_translate_element" style="display:none;"></div>
+</nav>
+
+
+  <!-- SEZIONE PRODOTTO -->
+ <main class="product-container">
+  
+  <div class="product-details">
+    <h1 class="product-title">FEA360</h1>
+    
+    <h2 class="product-subtitle">
+      Sali, balla, conquista la scena.<br>
+      Il mondo gira intorno a te.
+    </h2>
+
+    <div class="product-description">
+    <p>
+    C'è un momento in ogni festa in cui l'energia esplode, la musica sale e qualcuno sale sulla pedana — e da quel momento in poi, tutti vogliono farlo. Il <strong>Fea360</strong> è quell'esperienza: una <strong>pedana esclusiva</strong> dove i tuoi ospiti possono salire, ballare, ridere e lasciarsi andare, mentre un braccio rotante cattura ogni secondo a <strong>360 gradi</strong>, direttamente dal loro smartphone. Il risultato è un <strong>video cinematografico</strong>, dinamico e irresistibile, pronto per essere condiviso nel giro di pochi istanti.
+    </p>
+
+    <p>
+    Il <strong>Fea360</strong> non è semplicemente un'attrazione — è il <strong>momento clou</strong> della serata, quello che tutti ricordano e di cui parlano ancora il giorno dopo. Che siano gli sposi nel loro primo ballo, un gruppo di amici scatenati o i festeggiati nel pieno dell'euforia, ogni salita sulla pedana diventa una <strong>scena da protagonista</strong>.
+    </p>
+
+    <p>
+    Un video personale, <strong>unico e spettacolare</strong>, che porta la firma di chi lo ha vissuto e l'<strong>energia inconfondibile</strong> della tua festa.
+    </p>
+    </div>
+
+    
+    <h3 class="service-header">Service - Cosa è incluso:</h3>
+    <ul class="features-list">
+      <li><strong>Noleggio</strong> del <em>Fea360</em> per <strong>3 ore</strong> durante l’evento</li>
+      <li><strong>Video illimitati</strong> per tutta la durata del servizio</li>
+      <li>Uno o due <strong>operatori tecnici dedicati</strong> per la tutta la durata dell'evento</li>
+      <li><strong>Consegna di tutti i file digitali</strong> al termine dell'evento</li>
+      <li><strong>Gadget e accessori</strong> per le foto <em>(cornici, props e scenografie)</em> <br> <strong><em>su richiesta e con costo aggiuntivo*</em></strong></li>
+    </ul>
+  </div>
+
+<div class="product-image">
+    <img src="images/Fea360.png" alt="FeaPhone">
+  </div>
+</main>
+
+<!-- Preventivo -->
+  <section id="preventivo" class="section-dark-bg">
+  <div class="preventivo-inner">
+    <div class="centered">
+      <h2 class="section-title">Richiedi un Preventivo</h2>
+      <p class="form-subtitle">Compila i campi sottostanti per ricevere un'offerta personalizzata e rendere il tuo prossimo evento memorabile.</p>
+    </div>
+
+    <form id="preventivoForm" action="https://formspree.io/f/xpqkoebz" method="POST">
+  <div class="form-row">
+    <div class="form-group"><label>Nome *</label><input type="text" name="nome" required></div>
+    <div class="form-group"><label>Cognome *</label><input type="text" name="cognome" required></div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group"><label>Email *</label><input type="email" name="email" required></div>
+    <div class="form-group"><label>Numero di telefono *</label><input type="tel" id="telefono_input" name="telefono" required></div>
+  </div>
+
+  <div class="form-group">
+    <label>Data dell'evento previsto *</label>
+    <input type="date" id="data_input" name="data_evento" required>
+  </div>
+
+  <div class="form-group">
+    <label>Luogo dell'evento previsto *</label>
+    <input type="text" name="luogo" placeholder="Inserisci la città o la location" required>
+  </div>
+
+  <div class="form-group">
+    <label>Tipo di servizio richiesto *</label>
+    <div class="checkbox-group">
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaMirror"> FeaMirror</label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaMirror Selfie"> FeaMirror Selfie</label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="FeaPhone"> FeaPhone</label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="Fea360"> Fea360</label>
+      <label class="checkbox-label"><input type="checkbox" name="servizio" value="Altro"> Altro</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Messaggio aggiuntivo</label>
+    <textarea name="messaggio" rows="5" placeholder="Raccontaci di più sul tuo evento..."></textarea>
+  </div>
+
+  <input type="hidden" id="email_subject" name="_subject" value="Richiesta Preventivo">
+
+  <button type="submit" class="btn-submit">Invia richiesta</button>
+</form>
+  </div>
+</section>
+
+<!--    Footer   -->
+<footer class="main-footer">
+  <div class="footer-clouds">
+    <div class="clouds-text">
+      <p>Ogni festa ha un'anima. Noi la catturiamo.</p>
+    </div>
+  </div>
+
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <div class="footer-brand">
+        <img src="images/logoFeaMoments.png" alt="FeaMoments" class="mini-logo">
+      </div>
+      
+      <div class="footer-socials">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="FB"></a>
+        <a href="https://instagram.com/feamoments"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="IG"></a>
+        <a href="https://www.tiktok.com/@feamoments_"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TK"></a>
+        <a href="https://wa.me/393663159931"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WA"></a>
+      </div>
+
+      <div class="footer-copy">
+        <p>© 2026 FeaMoments. Cattura Ricordi, Divertiti con Stile.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Collegamento al file JS esterno -->
+<script src="script.js"></script>
+</body>
+</html>
