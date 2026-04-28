@@ -837,6 +837,22 @@ section { padding: 4rem 2rem; }
   font-size: 0.9rem;
 }
 
+/* Badge Matrimonio.com */
+.wedding-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wedding-badge img {
+  height: 45px; /* Lo teniamo simile all'altezza del tuo mini-logo che è 50px */
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.wedding-badge img:hover {
+  transform: scale(1.1);
+}
 /* Responsive Mobile */
 
 @media (max-width: 768px) {
@@ -880,6 +896,16 @@ section { padding: 4rem 2rem; }
     font-size: 1.2rem; /* Leggermente più piccolo per evitare sovrapposizioni */
     line-height: 1.4;
     padding: 0 1rem;
+  }
+  
+  .footer-bottom-inner { 
+    flex-direction: column; 
+    gap: 2rem; /* Aumentato il gap da 1.5 a 2 per dare spazio al badge */
+    text-align: center; 
+  }
+
+  .wedding-badge img {
+    height: 40px; /* Leggermente più piccolo su mobile */
   }
 }
 /* ─── MOBILE ─── */
